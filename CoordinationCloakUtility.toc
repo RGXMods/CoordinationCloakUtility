@@ -1,4 +1,4 @@
-﻿## Interface: 40402,50503,110207,120000,120001,120007
+﻿## Interface: 120007
 ## Version: 3.7.3
 ## Title: |cff8b0941C|r|cffffffffoordination|r |cff8b0941C|r|cffffffffloak|r |cff8b0941U|r|cfffffffftility|r|cff8b0941!|r
 ## Notes: |cff8b0941C|r|cffffffffoordination|r |cff8b0941C|r|cffffffffloak|r |cff8b0941U|r|cfffffffftility|r|cff8b0941!|r |n|r  |cff8b0941/ccu -|r Use AddOn!  |n|r   |cff8b0941DonnieDice|r

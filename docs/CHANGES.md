@@ -1,4 +1,9 @@
-﻿# v3.7.3 - 2026-06-30
+﻿# v3.7.4 - 2026-08-07
+
+## Changes
+- TOC bump: Now retail-only (Interface 120007). Removed Cata/MoP/Retail-era interface entries.
+
+# v3.7.3 - 2026-06-30
 
 ## Changes
 
