@@ -6,7 +6,7 @@
 ## Author: DonnieDice
 ## Email: donniedice@protonmail.com
 ## SavedVariables: CCUDB
-## IconTexture: Interface\AddOns\CoordinationCloakUtility\media\icon
+## IconTexture: Interface\AddOns\CoordinationCloakUtility\media\icon.tga
 
 ## X-Category: UI Media, Questing & Leveling, Audio & Video, Miscellaneous
 ## X-Website: https://github.com/donniedice/CoordinationCloakUtility
