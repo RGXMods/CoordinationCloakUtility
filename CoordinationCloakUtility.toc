@@ -1,10 +1,13 @@
 ﻿## Interface: 120007
-## Version: 3.7.4
+## Version: 3.7.5
 ## Title: |cff8b0941C|r|cffffffffoordination|r |cff8b0941C|r|cffffffffloak|r |cff8b0941U|r|cfffffffftility|r|cff8b0941!|r
 ## Notes: |cff8b0941C|r|cffffffffoordination|r |cff8b0941C|r|cffffffffloak|r |cff8b0941U|r|cfffffffftility|r|cff8b0941!|r |n|r  |cff8b0941/ccu -|r Use AddOn!  |n|r   |cff8b0941DonnieDice|r
 
 ## Author: DonnieDice
 ## Email: donniedice@protonmail.com
+## Category: RGX
+## Group: RGX
+## RequiredDeps: RGX-Framework
 ## SavedVariables: CCUDB
 ## IconTexture: Interface\AddOns\CoordinationCloakUtility\media\icon.tga
 
@@ -26,3 +29,8 @@ locales\cn.lua
 locales\tw.lua
 locales\localization.lua
 data\core.lua
+data\events.lua
+data\commands.lua
+data\minimap.lua
+data\teleport.lua
+data\utils.lua
