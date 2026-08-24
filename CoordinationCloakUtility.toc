@@ -12,7 +12,7 @@
 ## IconTexture: Interface\AddOns\CoordinationCloakUtility\media\icon.tga
 
 ## X-Category: UI Media, Questing & Leveling, Audio & Video, Miscellaneous
-## X-Website: https://github.com/donniedice/CoordinationCloakUtility
+## X-Website: https://github.com/RGXMods/CoordinationCloakUtility
 ## X-Curse-Project-ID: 1086635
 ## X-Wago-ID: qGZRLqGd
 ## X-WoWI-ID: 26956 
