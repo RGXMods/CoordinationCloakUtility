@@ -51,7 +51,7 @@
 ## <span style="color:#8b0941">📥 Installation</span>
 
 1.  **<span style="color:#2dc26b">Download</span>** <span style="color:#8b4b5c">R</span><span style="color:#8b4b5c">G</span><span style="color:#8b4b5c">X</span> <span style="color:#3598db">| </span> <span style="color:#8b0941">CCU</span> <span style="color:#e67e23">from your preferred platform</span><span style="color:#3598db">:</span>
-    *   [<span style="color:#4ecdc4">CurseForge</span>](https://www.curseforge.com/wow/addons/ccu-coordination-cloak-utility)
+    *   [<span style="color:#4ecdc4">CurseForge</span>](https://www.curseforge.com/wow/addons/rgx-coordination-cloak-utility)
     *   [<span style="color:#24292e">GitHub</span>](https://github.com/RGXMods/CoordinationCloakUtility/releases)
     *   [<span style="color:#8b0941">Wago.io</span>](https://addons.wago.io/addons/ccu)
 2.  **<span style="color:#4ecdc4">Extract</span>** <span style="color:#e67e23">to your</span> <span style="color:#06c">WoW</span> `Interface/AddOns` <span style="color:#e67e23">directory.</span>
@@ -88,6 +88,28 @@
 <span style="color:#e67e23">This project is licensed under the</span> [<span style="color:#2dc26b">MIT License</span>](https://github.com/RGXMods/CoordinationCloakUtility/blob/main/LICENSE)<span style="color:#e67e23">.</span>
 
 ***
+
+## Troubleshooting
+
+### No Usable Cloak Is Found
+
+- Confirm a supported cloak is in your bags rather than the bank.
+- Check the item's normal cooldown.
+- Wait briefly if item information is still loading, then try `/ccu` again.
+
+### The Cloak Does Not Equip or Restore
+
+- Leave combat before starting the cloak flow; WoW blocks protected equipment
+  changes in combat.
+- Confirm the back-slot item is not locked by another pending action.
+- Run `/reload` if equipment state remains stale after another addon changes
+  gear.
+
+### The Minimap Button Is Missing
+
+- Run `/ccu icon on`.
+- Confirm both CCU and RGX-Framework are enabled.
+- Reset the UI with `/reload` after an addon update.
 
 ## <span style="color:#4ecdc4">🌟 Thank you for choosing </span> <span style="color:#8b4b5c">R</span><span style="color:#8b4b5c">G</span><span style="color:#8b4b5c">X</span> <span style="color:#4ecdc4">Mods! 🌟</span>
 
