@@ -1,4 +1,9 @@
-﻿# v3.7.5 - 2026-08-08
+﻿# v3.7.6 - 2026-09-29
+
+## Changes
+- Added the `AGENTS.md` framework-build and interface-versioning directives; the Retail TOC interface is refreshed to the live `120100`.
+
+# v3.7.5 - 2026-08-08
 
 ## Changes
 - **Full RGX-Framework migration**: Gutted and rebuilt core on RGX-Framework
