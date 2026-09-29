@@ -1,10 +1,9 @@
-﻿## Interface: 120007
+﻿## Interface: 120100
 ## Version: 3.7.5
 ## Title: |cff8b0941C|r|cffffffffoordination|r |cff8b0941C|r|cffffffffloak|r |cff8b0941U|r|cfffffffftility|r|cff8b0941!|r
-## Notes: |cff8b0941C|r|cffffffffoordination|r |cff8b0941C|r|cffffffffloak|r |cff8b0941U|r|cfffffffftility|r|cff8b0941!|r |n|r  |cff8b0941/ccu -|r Use AddOn!  |n|r   |cff8b0941DonnieDice|r
+## Notes: |cff8b0941C|r|cffffffffoordination|r |cff8b0941C|r|cffffffffloak|r |cff8b0941U|r|cfffffffftility|r|cff8b0941!|r |n|r  |cff8b0941/ccu -|r Use AddOn!
 
 ## Author: DonnieDice
-## Email: donniedice@protonmail.com
 ## Category: RGX
 ## Group: RGX
 ## RequiredDeps: RGX-Framework
