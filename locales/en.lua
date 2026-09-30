@@ -31,6 +31,7 @@ CCU.Locale["enUS"] = {
     HELP_OPTION_PANEL = " /ccu - Trigger the cloak utility.",
     HELP_WELCOME = " /ccu welcome - Toggles the welcome message on/off.",
     HELP_HELP = " /ccu help - Displays this help message.",
+    HELP_ICON = " /ccu icon on or off - Show/hide the minimap icon.",
     UNKNOWN_COMMAND = "Unknown command. Type /ccu help for a list of commands.",
     
     -- Cooldown and Combat
@@ -44,9 +45,16 @@ CCU.Locale["enUS"] = {
     
     -- Process Messages
     TELEPORTATION_IN_PROGRESS = "Teleportation in progress.",
+    PROCESS_STARTED = " process started.",
     HIDING_BUTTON = "Hiding button.",
     PROCESS_RESET = "Cloak usage process reset.",
+    NO_CLOAK_EQUIPPED = "No cloak equipped.",
     
+    -- Minimap
+    MINIMAP_ICON_SHOWN = "Minimap icon shown.",
+    MINIMAP_ICON_HIDDEN = "Minimap icon hidden. Use /ccu icon on to show it again.",
+    MINIMAP_TOOLTIP_INTRO = "Keep your teleport cloak flow one click away.",
+
     -- Button Text
     BUTTON_TEXT = "Teleport",
     BUTTON_TOOLTIP = "Click to use teleportation cloak",

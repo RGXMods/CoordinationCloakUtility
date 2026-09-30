@@ -46,9 +46,10 @@ same flow close at hand. CCU respects combat restrictions and cloak cooldowns.
   the icon, and Ctrl+Right-click hides it.
 - **Persistent settings:** Remembers minimap position, minimap visibility, and
   welcome-message preference.
-- **Localization:** Ships translations for English, German, Spanish, French,
-  Italian, Korean, Portuguese, Russian, Simplified Chinese, and Traditional
-  Chinese.
+- **Localization:** Ships translations for all 12 WoW client locales: English
+  (enUS), German (deDE), Spanish (esES and esMX), French (frFR), Italian
+  (itIT), Korean (koKR), Portuguese (ptBR and ptPT), Russian (ruRU), and
+  Simplified (zhCN) and Traditional (zhTW) Chinese.
 
 ## Supported Cloaks
 

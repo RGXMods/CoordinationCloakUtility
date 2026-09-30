@@ -31,6 +31,7 @@ CCU.Locale["deDE"] = {
     HELP_OPTION_PANEL = " /ccu - Aktiviere das Umhang-Hilfsprogramm.",
     HELP_WELCOME = " /ccu welcome - Schaltet die Willkommensnachricht ein/aus.",
     HELP_HELP = " /ccu help - Zeigt diese Hilfsnachricht an.",
+    HELP_ICON = " /ccu icon on oder off - Minimap-Symbol anzeigen/ausblenden.",
     UNKNOWN_COMMAND = "Unbekannter Befehl. Gib /ccu help für eine Liste der Befehle ein.",
     
     -- Cooldown and Combat
@@ -44,9 +45,16 @@ CCU.Locale["deDE"] = {
     
     -- Process Messages
     TELEPORTATION_IN_PROGRESS = "Teleportation im Gange.",
+    PROCESS_STARTED = " Vorgang gestartet.",
     HIDING_BUTTON = "Verstecke Knopf.",
     PROCESS_RESET = "Umhang-Benutzungsprozess zurückgesetzt.",
+    NO_CLOAK_EQUIPPED = "Kein Umhang angelegt.",
     
+    -- Minimap
+    MINIMAP_ICON_SHOWN = "Minimap-Symbol eingeblendet.",
+    MINIMAP_ICON_HIDDEN = "Minimap-Symbol ausgeblendet. Benutze /ccu icon on, um es wieder anzuzeigen.",
+    MINIMAP_TOOLTIP_INTRO = "Halte deinen Teleport-Umhang-Fluss nur einen Klick entfernt.",
+
     -- Button Text
     BUTTON_TEXT = "Teleportieren",
     BUTTON_TOOLTIP = "Klicken, um Teleportationsumhang zu benutzen",

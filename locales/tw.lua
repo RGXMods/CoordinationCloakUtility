@@ -31,6 +31,7 @@ CCU.Locale["zhTW"] = {
     HELP_OPTION_PANEL = " /ccu - 觸發披風實用程式。",
     HELP_WELCOME = " /ccu welcome - 切換歡迎訊息的開/關。",
     HELP_HELP = " /ccu help - 顯示此說明訊息。",
+    HELP_ICON = " /ccu icon on 或 off - 顯示/隱藏小地圖圖示。",
     UNKNOWN_COMMAND = "未知指令。輸入 /ccu help 查看指令列表。",
 
     -- Cooldown and Combat
@@ -44,8 +45,15 @@ CCU.Locale["zhTW"] = {
 
     -- Process Messages
     TELEPORTATION_IN_PROGRESS = "傳送正在進行中。",
+    PROCESS_STARTED = " 程序已開始。",
     HIDING_BUTTON = "正在隱藏按鈕。",
     PROCESS_RESET = "披風使用過程已重設。",
+    NO_CLOAK_EQUIPPED = "未裝備披風。",
+
+    -- Minimap
+    MINIMAP_ICON_SHOWN = "小地圖圖示已顯示。",
+    MINIMAP_ICON_HIDDEN = "小地圖圖示已隱藏。使用 /ccu icon on 重新顯示。",
+    MINIMAP_TOOLTIP_INTRO = "讓傳送披風一鍵即用。",
 
     -- Button Text
     BUTTON_TEXT = "傳送",
