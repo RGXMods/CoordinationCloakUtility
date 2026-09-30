@@ -31,6 +31,7 @@ CCU.Locale["ruRU"] = {
     HELP_OPTION_PANEL = " /ccu - Активировать утилиту плаща.",
     HELP_WELCOME = " /ccu welcome - Включить/выключить приветственное сообщение.",
     HELP_HELP = " /ccu help - Показать это справочное сообщение.",
+    HELP_ICON = " /ccu icon on или off - Показать/скрыть значок у миникарты.",
     UNKNOWN_COMMAND = "Неизвестная команда. Введите /ccu help для списка команд.",
 
     -- Cooldown and Combat
@@ -44,8 +45,15 @@ CCU.Locale["ruRU"] = {
 
     -- Process Messages
     TELEPORTATION_IN_PROGRESS = "Телепортация в процессе.",
+    PROCESS_STARTED = " процесс запущен.",
     HIDING_BUTTON = "Скрытие кнопки.",
     PROCESS_RESET = "Процесс использования плаща сброшен.",
+    NO_CLOAK_EQUIPPED = "Плащ не экипирован.",
+
+    -- Minimap
+    MINIMAP_ICON_SHOWN = "Значок у миникарты показан.",
+    MINIMAP_ICON_HIDDEN = "Значок у миникарты скрыт. Используйте /ccu icon on, чтобы снова показать его.",
+    MINIMAP_TOOLTIP_INTRO = "Держите процесс телепортации плаща в одном клике.",
 
     -- Button Text
     BUTTON_TEXT = "Телепорт",

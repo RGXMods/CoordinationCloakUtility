@@ -31,6 +31,7 @@ CCU.Locale["ptBR"] = {
     HELP_OPTION_PANEL = " /ccu - Aciona o utilitário de manto.",
     HELP_WELCOME = " /ccu welcome - Ativa/desativa a mensagem de boas-vindas.",
     HELP_HELP = " /ccu help - Exibe esta mensagem de ajuda.",
+    HELP_ICON = " /ccu icon on ou off - Mostrar/ocultar o ícone do minimapa.",
     UNKNOWN_COMMAND = "Comando desconhecido. Digite /ccu help para uma lista de comandos.",
 
     -- Cooldown and Combat
@@ -44,8 +45,15 @@ CCU.Locale["ptBR"] = {
 
     -- Process Messages
     TELEPORTATION_IN_PROGRESS = "Teletransporte em andamento.",
+    PROCESS_STARTED = " processo iniciado.",
     HIDING_BUTTON = "Ocultando botão.",
     PROCESS_RESET = "Processo de uso do manto redefinido.",
+    NO_CLOAK_EQUIPPED = "Nenhum manto equipado.",
+
+    -- Minimap
+    MINIMAP_ICON_SHOWN = "Ícone do minimapa visível.",
+    MINIMAP_ICON_HIDDEN = "Ícone do minimapa oculto. Use /ccu icon on para mostrá-lo novamente.",
+    MINIMAP_TOOLTIP_INTRO = "Mantenha seu fluxo de manto de teletransporte a um clique de distância.",
 
     -- Button Text
     BUTTON_TEXT = "Teletransporte",

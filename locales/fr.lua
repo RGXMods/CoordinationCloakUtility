@@ -31,6 +31,7 @@ CCU.Locale["frFR"] = {
     HELP_OPTION_PANEL = " /ccu - Déclencher l'utilitaire de cape.",
     HELP_WELCOME = " /ccu welcome - Active/désactive le message de bienvenue.",
     HELP_HELP = " /ccu help - Affiche ce message d'aide.",
+    HELP_ICON = " /ccu icon on ou off - Afficher/masquer l'icône de la minicarte.",
     UNKNOWN_COMMAND = "Commande inconnue. Tapez /ccu help pour une liste des commandes.",
     
     -- Cooldown and Combat
@@ -44,9 +45,16 @@ CCU.Locale["frFR"] = {
     
     -- Process Messages
     TELEPORTATION_IN_PROGRESS = "Téléportation en cours.",
+    PROCESS_STARTED = " processus démarré.",
     HIDING_BUTTON = "Masquage du bouton.",
     PROCESS_RESET = "Processus d'utilisation de la cape réinitialisé.",
+    NO_CLOAK_EQUIPPED = "Aucune cape équipée.",
     
+    -- Minimap
+    MINIMAP_ICON_SHOWN = "Icône de la minicarte affichée.",
+    MINIMAP_ICON_HIDDEN = "Icône de la minicarte masquée. Utilisez /ccu icon on pour la réafficher.",
+    MINIMAP_TOOLTIP_INTRO = "Gardez votre flux de cape de téléportation à un clic.",
+
     -- Button Text
     BUTTON_TEXT = "Téléporter",
     BUTTON_TOOLTIP = "Cliquez pour utiliser la cape de téléportation",

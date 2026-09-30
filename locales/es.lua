@@ -31,6 +31,7 @@ CCU.Locale["esES"] = {
     HELP_OPTION_PANEL = " /ccu - Activar la utilidad de capa.",
     HELP_WELCOME = " /ccu welcome - Activa/desactiva el mensaje de bienvenida.",
     HELP_HELP = " /ccu help - Muestra este mensaje de ayuda.",
+    HELP_ICON = " /ccu icon on u off - Mostrar/ocultar el icono del minimapa.",
     UNKNOWN_COMMAND = "Comando desconocido. Escribe /ccu help para ver la lista de comandos.",
     
     -- Cooldown and Combat
@@ -44,9 +45,16 @@ CCU.Locale["esES"] = {
     
     -- Process Messages
     TELEPORTATION_IN_PROGRESS = "Teletransporte en progreso.",
+    PROCESS_STARTED = " proceso iniciado.",
     HIDING_BUTTON = "Ocultando botón.",
     PROCESS_RESET = "Proceso de uso de capa reiniciado.",
+    NO_CLOAK_EQUIPPED = "No hay capa equipada.",
     
+    -- Minimap
+    MINIMAP_ICON_SHOWN = "Icono del minimapa visible.",
+    MINIMAP_ICON_HIDDEN = "Icono del minimapa oculto. Usa /ccu icon on para mostrarlo de nuevo.",
+    MINIMAP_TOOLTIP_INTRO = "Mantén tu flujo de capa de teletransporte a un clic de distancia.",
+
     -- Button Text
     BUTTON_TEXT = "Teletransportar",
     BUTTON_TOOLTIP = "Clic para usar capa de teletransporte",

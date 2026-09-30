@@ -31,6 +31,7 @@ CCU.Locale["itIT"] = {
     HELP_OPTION_PANEL = " /ccu - Attiva l'utilità del mantello.",
     HELP_WELCOME = " /ccu welcome - Attiva/disattiva il messaggio di benvenuto.",
     HELP_HELP = " /ccu help - Mostra questo messaggio di aiuto.",
+    HELP_ICON = " /ccu icon on oppure off - Mostra/nascondi l'icona della minimappa.",
     UNKNOWN_COMMAND = "Comando sconosciuto. Digita /ccu help per un elenco di comandi.",
 
     -- Cooldown and Combat
@@ -44,8 +45,15 @@ CCU.Locale["itIT"] = {
 
     -- Process Messages
     TELEPORTATION_IN_PROGRESS = "Teletrasporto in corso.",
+    PROCESS_STARTED = " processo avviato.",
     HIDING_BUTTON = "Pulsante nascosto.",
     PROCESS_RESET = "Processo di utilizzo del mantello ripristinato.",
+    NO_CLOAK_EQUIPPED = "Nessun mantello equipaggiato.",
+
+    -- Minimap
+    MINIMAP_ICON_SHOWN = "Icona della minimappa mostrata.",
+    MINIMAP_ICON_HIDDEN = "Icona della minimappa nascosta. Usa /ccu icon on per mostrarla di nuovo.",
+    MINIMAP_TOOLTIP_INTRO = "Mantieni il flusso del mantello da teletrasporto a un clic di distanza.",
 
     -- Button Text
     BUTTON_TEXT = "Teletrasporto",

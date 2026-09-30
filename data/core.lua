@@ -1,5 +1,8 @@
 -- CCU | Coordination Cloak Utility - Core bootstrap
-local CCU = {}
+-- Adopt the private vararg addon table so the locale modules (which run
+-- before this file, per the TOC load order) and every data/*.lua consumer
+-- share one and the same CCU identity.
+local _, CCU = ...
 _G.CCU = CCU
 
 CCU.name = "CoordinationCloakUtility"
@@ -59,10 +62,11 @@ CCU.db = RGX:NewDatabase("CCUDB", {
 	lastEquippedCloak = nil,
 })
 
--- Bootstrap RGX Addon
+-- Bootstrap RGX Addon (the framework dispatches opts.onInit; onLoad would be
+-- silently ignored)
 RGX.Addon(CCU.name, {
 	db = CCU.db,
-	onLoad = function(self)
+	onInit = function(self)
 		self:Initialize()
 	end,
 })
@@ -72,6 +76,9 @@ function CCU:Initialize()
 
 	-- Create secure button for cloak usage
 	self:CreateSecureButton()
+
+	-- Build localized strings after all locale tables loaded
+	self:InitializeLocalization()
 
 	-- Minimap button via RGX
 	self:CreateMinimapButton()

@@ -26,11 +26,15 @@ function CCU:CreateMinimapButton()
 		onDragStop = function(btn, angle)
 			self.db.minimapAngle = angle
 		end,
+		-- Tooltip strings are localized at button-creation time (Initialize runs
+		-- InitializeLocalization() before CreateMinimapButton()). The widget
+		-- action hints stay with the RGXMinimap widget design (not
+		-- locale-translated), matching the widget-idiom decision in the MR.
 		tooltip = {
-			title = self.MINIMAP_TOOLTIP_TITLE,
-			subtitle = self.MINIMAP_TOOLTIP_SUBTITLE,
+			title = "|cff8b0941Coordination Cloak Utility|r",
+			subtitle = "/ccu",
 			lines = {
-				"|cffd9c6ffKeep your teleport cloak flow one click away.|r",
+				"|cffd9c6ff" .. self:GetLocalizedText("MINIMAP_TOOLTIP_INTRO") .. "|r",
 				" ",
 				{left = "|cff8b0941Left-Click|r", right = "|cffffffffEquip or use your teleport cloak|r"},
 				{left = "|cff4ecdc4Left-Drag|r", right = "|cffffffffMove around minimap|r"},

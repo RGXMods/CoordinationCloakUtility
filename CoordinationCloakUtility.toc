@@ -14,6 +14,7 @@
 ## X-Website: https://github.com/RGXMods/CoordinationCloakUtility
 ## X-Curse-Project-ID: 1086635
 ## X-Wago-ID: qGZRLqGd
+## X-Localizations: enUS, deDE, esES, esMX, frFR, itIT, koKR, ptBR, ptPT, ruRU, zhCN, zhTW
 
 locales\en.lua
 locales\es.lua
@@ -22,6 +23,7 @@ locales\fr.lua
 locales\it.lua
 locales\ko.lua
 locales\pt.lua
+locales\ptpt.lua
 locales\ru.lua
 locales\cn.lua
 locales\tw.lua

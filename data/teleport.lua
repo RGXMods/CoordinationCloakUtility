@@ -101,7 +101,7 @@ function CCU:HandleBackSlotItem()
 			if self.originalCloak and self.originalCloak ~= equippedCloakID then
 				local originalCloakLink = select(2, GetItemInfo(self.originalCloak))
 			else
-				self:Print(self.L.ORIGINAL_CLOAK_SAVED .. "No cloak equipped.")
+				self:Print(self.L.ORIGINAL_CLOAK_SAVED .. self.L.NO_CLOAK_EQUIPPED)
 			end
 		end
 
@@ -216,7 +216,7 @@ function CCU:AttemptReequip()
 	local backSlotID = GetInventorySlotInfo("BackSlot")
 	local equippedCloakID = GetInventoryItemID("player", backSlotID)
 	if equippedCloakID == self.originalCloak then
-		self:Print(self.colors.success .. "Original cloak is already equipped.|r")
+		self:Print(self.L.CLOAK_ALREADY_EQUIPPED)
 		self:ResetCloakProcess()
 		return
 	end
@@ -323,7 +323,7 @@ function CCU:EquipAndUseCloak(cloakID, cloakLink, source)
 	if originalCloakLink then
 		self:Print(self.CCU_PREFIX .. self.L.ORIGINAL_CLOAK_SAVED .. originalCloakLink)
 	else
-		self:Print(self.CCU_PREFIX .. self.L.ORIGINAL_CLOAK_SAVED .. "No cloak equipped.")
+		self:Print(self.CCU_PREFIX .. self.L.ORIGINAL_CLOAK_SAVED .. self.L.NO_CLOAK_EQUIPPED)
 	end
 
 	if source == "minimap" then

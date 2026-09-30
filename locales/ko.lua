@@ -31,6 +31,7 @@ CCU.Locale["koKR"] = {
     HELP_OPTION_PANEL = " /ccu - 망토 유틸리티를 실행합니다.",
     HELP_WELCOME = " /ccu welcome - 환영 메시지를 켜거나 끕니다.",
     HELP_HELP = " /ccu help - 이 도움말 메시지를 표시합니다.",
+    HELP_ICON = " /ccu icon on 또는 off - 미니맵 아이콘 표시/숨기기.",
     UNKNOWN_COMMAND = "알 수 없는 명령어입니다. 명령어 목록은 /ccu help를 입력하세요.",
 
     -- Cooldown and Combat
@@ -44,8 +45,15 @@ CCU.Locale["koKR"] = {
 
     -- Process Messages
     TELEPORTATION_IN_PROGRESS = "순간이동 진행 중.",
+    PROCESS_STARTED = " 프로세스가 시작되었습니다.",
     HIDING_BUTTON = "버튼 숨기는 중.",
     PROCESS_RESET = "망토 사용 프로세스 재설정됨.",
+    NO_CLOAK_EQUIPPED = "착용한 망토가 없습니다.",
+
+    -- Minimap
+    MINIMAP_ICON_SHOWN = "미니맵 아이콘이 표시되었습니다.",
+    MINIMAP_ICON_HIDDEN = "미니맵 아이콘이 숨겨졌습니다. 다시 표시하려면 /ccu icon on을 사용하세요.",
+    MINIMAP_TOOLTIP_INTRO = "순간이동 망토 흐름을 클릭 한 번으로 유지하세요.",
 
     -- Button Text
     BUTTON_TEXT = "순간이동",
