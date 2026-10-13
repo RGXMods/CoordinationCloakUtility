@@ -1,4 +1,8 @@
-﻿# v3.7.6 - 2026-09-29
+﻿# Non-beta Candidate: [v3.7.7](changelogs/3.7.7.md)
+
+Retail 12.1.5 / Interface `120105`; client testing and publication pending.
+
+# v3.7.6 - 2026-09-29
 
 ## Changes
 - Added the `AGENTS.md` framework-build and interface-versioning directives; the Retail TOC interface is refreshed to the live `120100`.
