@@ -22,9 +22,15 @@ function CCU:CreateMinimapButton()
 		onCtrlRight = function()
 			self:ToggleMinimapIcon(false)
 		end,
-		-- Title only: red initials and punctuation, white remaining letters.
+		-- Keep the colored title and usage hints, without the introductory subtext.
 		tooltip = {
 			title = "|cff8b0941C|r|cffffffffoordination|r |cff8b0941C|r|cffffffffloak|r |cff8b0941U|r|cfffffffftility|r|cff8b0941!|r",
+			lines = {
+				{left = "|cff8b0941First Left-Click|r", right = "|cffffffffPrepare / equip cloak|r"},
+				{left = "|cff8b0941Second Left-Click|r", right = "|cffffffffTeleport using this icon|r"},
+				{left = "|cff4ecdc4Left-Drag|r", right = "|cffffffffMove around minimap|r"},
+				{left = "|cffe74c3cCtrl+Right-Click|r", right = "|cffffffffHide minimap icon|r"},
+			},
 		},
 	})
 
