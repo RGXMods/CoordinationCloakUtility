@@ -30,8 +30,8 @@ the teleport completes.
 Use `/ccu` for the popup button, or click the movable minimap icon twice:
 once to prepare/equip the cloak and again to activate it. The minimap flow
 does not display the center-screen button. CCU respects combat restrictions
-and cloak cooldowns. This branch requires the secure minimap extension in
-RGX-Framework; that extension is not in published v2.7.16 yet.
+and cloak cooldowns. Requires RGX-Framework v2.7.17 or newer for secure minimap
+item actions.
 
 ## Features
 
@@ -81,7 +81,8 @@ CCU is not currently packaged for Classic clients.
 ### Requirements
 
 - World of Warcraft Retail
-- [RGX-Framework](https://github.com/RGXMods/RGX-Framework) as a required addon
+- [RGX-Framework](https://github.com/RGXMods/RGX-Framework) v2.7.17 or newer
+  as a required addon
 - At least one supported teleportation cloak in your bags
 
 ## Installation
