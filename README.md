@@ -11,7 +11,7 @@
 [![License](https://img.shields.io/github/license/RGXMods/CoordinationCloakUtility?style=for-the-badge&color=2dc26b)](LICENSE)
 
 [![CurseForge](https://img.shields.io/badge/CurseForge-Download-f16436?style=flat-square&logo=curseforge&logoColor=white)](https://www.curseforge.com/wow/addons/ccu-coordination-cloak-utility)
-[![Wago](https://img.shields.io/badge/Wago-Download-b96ad9?style=flat-square)](https://addons.wago.io/addons/ccu)
+[![Wago](https://img.shields.io/badge/Wago-Download-b96ad9?style=flat-square)](https://addons.wago.io/addons/coordinationcloakutility)
 [![Discord](https://img.shields.io/badge/Discord-RealmGX-5865f2?style=flat-square&logo=discord&logoColor=white)](https://discord.gg/N7kdKAHVVF)
 
 **[Features](#features) | [Installation](#installation) | [Usage](#usage) | [Supported Cloaks](#supported-cloaks) | [Support](#support-and-contributing)**
@@ -91,7 +91,7 @@ CCU is not currently packaged for Classic clients.
 
 Install CCU from
 [CurseForge](https://www.curseforge.com/wow/addons/ccu-coordination-cloak-utility),
-[Wago](https://addons.wago.io/addons/ccu), or
+[Wago](https://addons.wago.io/addons/coordinationcloakutility), or
 [GitHub Releases](https://github.com/RGXMods/CoordinationCloakUtility/releases).
 Ensure your addon manager also installs RGX-Framework.
 
