@@ -26,10 +26,8 @@ function CCU:CreateMinimapButton()
 		-- action hints stay with the RGXMinimap widget design (not
 		-- locale-translated), matching the widget-idiom decision in the MR.
 		tooltip = {
-			title = "|cff8b0941Coordination Cloak Utility|r",
-			subtitle = "/ccu",
+			title = "|cff8b0941C|r|cffffffffoordination|r |cff8b0941C|r|cffffffffloak|r |cff8b0941U|r|cfffffffftility|r|cff8b0941!|r",
 			lines = {
-				{text = "|cffd9c6ff" .. self:GetLocalizedText("MINIMAP_TOOLTIP_INTRO") .. "|r"},
 				{left = "|cff8b0941Left-Click|r", right = "|cffffffffEquip or use your teleport cloak|r"},
 				{left = "|cff4ecdc4Left-Drag|r", right = "|cffffffffMove around minimap|r"},
 				{left = "|cffe74c3cCtrl+Right-Click|r", right = "|cffffffffHide minimap icon|r"},

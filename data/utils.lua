@@ -14,19 +14,8 @@ function CCU:CreateSecureButton()
 	button:SetNormalFontObject("GameFontNormalLarge")
 	button:SetPushedTexture("Interface\\Buttons\\UI-Quickslot-Depress")
 	button:SetHighlightTexture("Interface\\Buttons\\ButtonHilight-Square")
-	button:RegisterForClicks("AnyUp")
-	button:SetScript("PostClick", function() self:HandleTeleportButtonPostClick() end)
+	button:RegisterForClicks("AnyDown", "AnyUp")
 	button:Hide()
-end
-
--- Handle teleport button post-click
-function CCU:HandleTeleportButtonPostClick()
-	local backSlotID = GetInventorySlotInfo("BackSlot")
-	local equippedCloakID = GetInventoryItemID("player", backSlotID)
-	if equippedCloakID and self.usableCloaks[equippedCloakID] and not self.teleportInProgress then
-		self.teleportInProgress = true
-		self:Print(self.CCU_PREFIX .. self.L.TELEPORTATION_IN_PROGRESS)
-	end
 end
 
 -- Build teleport macro
@@ -46,14 +35,16 @@ function CCU:ClearSecureTeleportButton(button)
 
 	button:SetAttribute("type", nil)
 	button:SetAttribute("macrotext", nil)
+	button:SetAttribute("item", nil)
 end
 
 -- Configure secure button
 function CCU:ConfigureSecureTeleportButton(button, cloakID, includeEquip)
 	if InCombatLockdown() or not button or not cloakID then return end
 
-	button:SetAttribute("type", "macro")
-	button:SetAttribute("macrotext", self:BuildTeleportMacro(cloakID, includeEquip))
+	button:SetAttribute("type", "item")
+	button:SetAttribute("item", "item:" .. cloakID)
+	button:SetAttribute("macrotext", nil)
 end
 
 -- Configure secure button for back slot
@@ -62,21 +53,6 @@ function CCU:ConfigureSecureButtonForBackSlot(cloakID)
 
 	self:ConfigureSecureTeleportButton(self.secureButton, cloakID, false)
 	self.secureButton:SetNormalTexture(GetItemIcon(cloakID))
-end
-
--- Try execute teleport macro
-function CCU:TryExecuteTeleportMacro(cloakID)
-	if not cloakID or InCombatLockdown() then
-		return false
-	end
-
-	local macroText = self:BuildTeleportMacro(cloakID, true)
-	if not macroText or type(RunMacroText) ~= "function" then
-		return false
-	end
-
-	local ok = pcall(RunMacroText, macroText)
-	return ok == true
 end
 
 -- Refresh minimap button
@@ -127,14 +103,14 @@ end
 function CCU:ToggleWelcomeMessage()
 	self.db.showWelcomeMessage = not self.db.showWelcomeMessage
 	local status = self.db.showWelcomeMessage and self.L.WELCOME_MSG_ENABLED or self.L.WELCOME_MSG_DISABLED
-	self:Print(self.CCU_PREFIX .. status)
+	self:Print(status)
 end
 
 -- Display help
 function CCU:DisplayHelp()
 	self:Print(self.L.HELP_COMMAND)
-	self:Print(self.CCU_PREFIX .. self.L.HELP_OPTION_PANEL)
-	self:Print(self.CCU_PREFIX .. self.L.HELP_WELCOME)
-	self:Print(self.CCU_PREFIX .. self.L.HELP_ICON)
-	self:Print(self.CCU_PREFIX .. self.L.HELP_HELP)
+	self:Print(self.L.HELP_OPTION_PANEL)
+	self:Print(self.L.HELP_WELCOME)
+	self:Print(self.L.HELP_ICON)
+	self:Print(self.L.HELP_HELP)
 end

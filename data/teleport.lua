@@ -120,7 +120,7 @@ function CCU:HandleBackSlotItem()
 			if self.suppressNextEquipMessage then
 				self.suppressNextEquipMessage = false
 			else
-				self:Print(self.CCU_PREFIX .. itemLink .. self.L.CLOAK_EQUIPPED)
+				self:Print(itemLink .. self.L.CLOAK_EQUIPPED)
 			end
 			if not InCombatLockdown() then
 				if self.suppressNextPopupButton then
@@ -135,7 +135,7 @@ function CCU:HandleBackSlotItem()
 			end
 		else
 			local remainingTime = self:FormatTime(remaining)
-			self:Print(self.CCU_PREFIX .. string.format(self.L.CLOAK_ON_CD, itemLink, remainingTime))
+			self:Print(string.format(self.L.CLOAK_ON_CD, itemLink, remainingTime))
 			if not InCombatLockdown() then
 				self.secureButton:Hide()
 			end
@@ -283,7 +283,7 @@ function CCU:GetBestUsableCloakID(silent)
 			return cloakID, itemLink, firstOwnedCloakID, firstOwnedLink
 		elseif not silent then
 			local remainingTime = self:FormatTime(remaining)
-			self:Print(self.CCU_PREFIX .. string.format(self.L.CLOAK_ON_CD, itemLink, remainingTime))
+			self:Print(string.format(self.L.CLOAK_ON_CD, itemLink, remainingTime))
 		end
 	end
 
@@ -312,11 +312,9 @@ function CCU:EquipAndUseCloak(cloakID, cloakLink, source)
 	local remaining = math.ceil(start + duration - GetTime())
 	if duration > 0 then
 		local remainingTime = self:FormatTime(remaining)
-		self:Print(self.CCU_PREFIX .. string.format(self.L.CLOAK_ON_CD, cloakLink, remainingTime))
+		self:Print(string.format(self.L.CLOAK_ON_CD, cloakLink, remainingTime))
 		return
 	end
-
-	self:Print(self.CCU_PREFIX .. cloakLink .. self.L.PROCESS_STARTED)
 
 	local backSlotID = GetInventorySlotInfo("BackSlot")
 	local equippedCloakID = GetInventoryItemID("player", backSlotID)
@@ -328,47 +326,22 @@ function CCU:EquipAndUseCloak(cloakID, cloakLink, source)
 	local originalCloakLink = self.originalCloak and select(2, GetItemInfo(self.originalCloak))
 	self.db.lastEquippedCloak = self.originalCloak
 	if originalCloakLink then
-		self:Print(self.CCU_PREFIX .. self.L.ORIGINAL_CLOAK_SAVED .. originalCloakLink)
+		self:Print(self.L.ORIGINAL_CLOAK_SAVED .. originalCloakLink)
 	else
-		self:Print(self.CCU_PREFIX .. self.L.ORIGINAL_CLOAK_SAVED .. self.L.NO_CLOAK_EQUIPPED)
+		self:Print(self.L.ORIGINAL_CLOAK_SAVED .. self.L.NO_CLOAK_EQUIPPED)
 	end
 
-	if source == "minimap" then
-		if equippedCloakID == cloakID then
-			self:Print(self.CCU_PREFIX .. self.L.CLOAK_ALREADY_EQUIPPED)
-		else
+	-- The framework minimap button and slash command are not secure action
+	-- buttons. Equip here, then let a real hardware click use the secure
+	-- item button. Neither preparation nor pcall proves a cast started.
+	if not InCombatLockdown() and self.secureButton then
+		if equippedCloakID ~= cloakID then
 			self.suppressNextEquipMessage = true
-			self.suppressNextPopupButton = true
 			EquipItemByName(cloakID)
-			self:Print(self.CCU_PREFIX .. cloakLink .. self.L.CLOAK_EQUIPPED)
 		end
-		if not InCombatLockdown() and self.secureButton and self.secureButton:IsShown() then
-			self.secureButton:Hide()
-		end
+		self:ConfigureSecureButtonForBackSlot(cloakID)
+		self.secureButton:Show()
 		RGX:After(0.1, function() self:RefreshMinimapButton() end)
-		return
-	end
-
-	local usedDirectly = false
-	if not InCombatLockdown() then
-		if equippedCloakID == cloakID then
-			self:Print(self.CCU_PREFIX .. self.L.CLOAK_ALREADY_EQUIPPED)
-			usedDirectly = self:TryExecuteTeleportMacro(cloakID)
-		else
-			usedDirectly = self:TryExecuteTeleportMacro(cloakID)
-			if not usedDirectly then
-				self.suppressNextEquipMessage = true
-				EquipItemByName(cloakID)
-			end
-		end
-
-		if usedDirectly then
-			self.teleportInProgress = true
-			self:Print(self.CCU_PREFIX .. self.L.TELEPORTATION_IN_PROGRESS)
-		else
-			self:ConfigureSecureButtonForBackSlot(cloakID)
-			self.secureButton:Show()
-		end
 	end
 end
 

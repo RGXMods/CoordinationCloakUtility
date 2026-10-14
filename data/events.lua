@@ -93,4 +93,14 @@ function CCU:RegisterEvents()
 			self:StartReEquipCheck()
 		end
 	end)
+
+	RGX:RegisterEvent("UNIT_SPELLCAST_START", function(_, unit, castGUID, spellID)
+		if unit ~= "player" or self.teleportInProgress then return end
+		local cloakID = GetInventoryItemID("player", GetInventorySlotInfo("BackSlot"))
+		if not cloakID or not self.usableCloaks[cloakID] then return end
+		local _, cloakSpellID = C_Item.GetItemSpell(cloakID)
+		if spellID ~= cloakSpellID then return end
+		self.teleportInProgress = true
+		self:Print(self.L.TELEPORTATION_IN_PROGRESS)
+	end)
 end
