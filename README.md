@@ -27,8 +27,11 @@ teleportation cloaks. It finds a supported cloak in your bags, equips it,
 provides a secure use button, and restores the cloak you were wearing after
 the teleport completes.
 
-Use `/ccu` for the popup button or click the movable minimap button to keep the
-same flow close at hand. CCU respects combat restrictions and cloak cooldowns.
+Use `/ccu` for the popup button, or click the movable minimap icon twice:
+once to prepare/equip the cloak and again to activate it. The minimap flow
+does not display the center-screen button. CCU respects combat restrictions
+and cloak cooldowns. This branch requires the secure minimap extension in
+RGX-Framework; that extension is not in published v2.7.16 yet.
 
 ## Features
 
@@ -42,8 +45,9 @@ same flow close at hand. CCU respects combat restrictions and cloak cooldowns.
   unavailable cloak.
 - **Item selection:** Chooses among usable supported cloaks when more than one
   is available.
-- **Movable minimap button:** Left-click starts the cloak flow, left-drag moves
-  the icon, and Ctrl+Right-click hides it.
+- **Movable minimap button:** First left-click prepares/equips the cloak;
+  second left-click on the same icon activates it without a popup. Left-drag
+  moves the icon, and Ctrl+Right-click hides it.
 - **Persistent settings:** Remembers minimap position, minimap visibility, and
   welcome-message preference.
 - **Localization:** Ships translations for all 12 WoW client locales: English
@@ -108,10 +112,11 @@ The Wago project ID shipped in the addon metadata is `qGZRLqGd`.
 ## Usage
 
 1. Keep a supported teleportation cloak in your bags.
-2. Type `/ccu` or left-click the minimap button.
-3. If needed, CCU equips an available cloak and presents its secure use
-   action.
-4. Activate the cloak and complete the teleport.
+2. Left-click the minimap icon to prepare/equip an available cloak.
+3. Wait for any equipment cooldown, then left-click **that same minimap icon**
+   again to activate the cloak. No center-screen button is needed.
+4. Alternatively, type `/ccu` to prepare the cloak and click its separate
+   center-screen use button. Complete the teleport.
 5. CCU restores the previously equipped cloak after zoning.
 
 ### Slash Commands
@@ -128,7 +133,8 @@ The Wago project ID shipped in the addon metadata is `qGZRLqGd`.
 
 | Action | Result |
 |---|---|
-| Left-click | Equip or use a supported teleport cloak |
+| First left-click | Prepare/equip a supported teleport cloak |
+| Second left-click on the same icon | Activate the cloak without a popup |
 | Left-drag | Move the button around the minimap |
 | Ctrl+Right-click | Hide the minimap button |
 

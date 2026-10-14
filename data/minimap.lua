@@ -9,6 +9,7 @@ function CCU:CreateMinimapButton()
 
 	self.minimapButton = RGX:GetMinimap():Create({
 		name = "CCU_MinimapButton",
+		secure = true,
 		icon = iconPath,
 		iconSize = 19,
 		buttonSize = 32,
@@ -21,17 +22,9 @@ function CCU:CreateMinimapButton()
 		onCtrlRight = function()
 			self:ToggleMinimapIcon(false)
 		end,
-		-- Tooltip strings are localized at button-creation time (Initialize runs
-		-- InitializeLocalization() before CreateMinimapButton()). The widget
-		-- action hints stay with the RGXMinimap widget design (not
-		-- locale-translated), matching the widget-idiom decision in the MR.
+		-- Title only: red initials and punctuation, white remaining letters.
 		tooltip = {
 			title = "|cff8b0941C|r|cffffffffoordination|r |cff8b0941C|r|cffffffffloak|r |cff8b0941U|r|cfffffffftility|r|cff8b0941!|r",
-			lines = {
-				{left = "|cff8b0941Left-Click|r", right = "|cffffffffEquip or use your teleport cloak|r"},
-				{left = "|cff4ecdc4Left-Drag|r", right = "|cffffffffMove around minimap|r"},
-				{left = "|cffe74c3cCtrl+Right-Click|r", right = "|cffffffffHide minimap icon|r"},
-			},
 		},
 	})
 
@@ -73,6 +66,11 @@ function CCU:HandleMinimapClick()
 	if self.inCombat then
 		self:NotifyCombatLockdown()
 		return
+	end
+	if self.teleportInProgress then return end
+	if self._minimapProcess then
+		local equipped = GetInventoryItemID("player", GetInventorySlotInfo("BackSlot"))
+		if equipped == self._minimapCloakID then return end
 	end
 	self:HandleCloakUse("minimap")
 	self:RefreshMinimapButton()

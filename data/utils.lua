@@ -60,6 +60,7 @@ function CCU:RefreshMinimapButton()
 	if not self.minimapButton then return end
 
 	if self.forceDefaultMinimapIcon then
+		self.minimapButton:SetItemAction(nil)
 		self.minimapButton.frame.icon:SetTexture("Interface\\AddOns\\CoordinationCloakUtility\\media\\ccu")
 		return
 	end
@@ -69,10 +70,11 @@ function CCU:RefreshMinimapButton()
 	local cloakIcon = "Interface\\AddOns\\CoordinationCloakUtility\\media\\ccu"
 
 	if equippedCloakID and self.usableCloaks[equippedCloakID] then
-		-- The framework minimap wrapper is not a SecureActionButton.
-		-- Cloak macro attributes belong only on self.secureButton.
 		cloakIcon = GetItemIcon(equippedCloakID) or cloakIcon
 	end
+	local actionID = self._minimapProcess and equippedCloakID == self._minimapCloakID
+		and self.usableCloaks[equippedCloakID] and equippedCloakID or nil
+	self.minimapButton:SetItemAction(actionID)
 
 	self.minimapButton.frame.icon:SetTexture(cloakIcon)
 end

@@ -123,7 +123,7 @@ function CCU:HandleBackSlotItem()
 				self:Print(itemLink .. self.L.CLOAK_EQUIPPED)
 			end
 			if not InCombatLockdown() then
-				if self.suppressNextPopupButton then
+				if self._minimapProcess or self.suppressNextPopupButton then
 					self.suppressNextPopupButton = false
 					if self.secureButton and self.secureButton:IsShown() then
 						self.secureButton:Hide()
@@ -140,8 +140,11 @@ function CCU:HandleBackSlotItem()
 				self.secureButton:Hide()
 			end
 		end
+		self:RefreshMinimapButton()
 		return
 	else
+		self._minimapProcess = nil
+		self._minimapCloakID = nil
 		self.originalCloak = nil
 		if not InCombatLockdown() and self.secureButton and self.secureButton:IsShown() then
 			self.secureButton:Hide()
@@ -153,6 +156,8 @@ end
 
 -- Reset cloak process
 function CCU:ResetCloakProcess()
+	self._minimapProcess = nil
+	self._minimapCloakID = nil
 	self.teleportInProgress = false
 	self.originalCloak = nil
 	self.reEquipAttempted = false
@@ -331,16 +336,24 @@ function CCU:EquipAndUseCloak(cloakID, cloakLink, source)
 		self:Print(self.L.ORIGINAL_CLOAK_SAVED .. self.L.NO_CLOAK_EQUIPPED)
 	end
 
-	-- The framework minimap button and slash command are not secure action
-	-- buttons. Equip here, then let a real hardware click use the secure
-	-- item button. Neither preparation nor pcall proves a cast started.
+	-- Minimap preparation runs after its secure action handler, so the item
+	-- action is available only to a subsequent hardware click on that icon.
+	-- Slash preparation retains the separate secure button.
 	if not InCombatLockdown() and self.secureButton then
+		self._minimapProcess = source == "minimap"
+		self._minimapCloakID = self._minimapProcess and cloakID or nil
+		self.forceDefaultMinimapIcon = false
 		if equippedCloakID ~= cloakID then
 			self.suppressNextEquipMessage = true
 			EquipItemByName(cloakID)
 		end
-		self:ConfigureSecureButtonForBackSlot(cloakID)
-		self.secureButton:Show()
+		if self._minimapProcess then
+			self.secureButton:Hide()
+		else
+			self:ConfigureSecureButtonForBackSlot(cloakID)
+			self.secureButton:Show()
+		end
+		self:RefreshMinimapButton()
 		RGX:After(0.1, function() self:RefreshMinimapButton() end)
 	end
 end
