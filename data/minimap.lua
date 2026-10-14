@@ -7,24 +7,19 @@ function CCU:CreateMinimapButton()
 
 	local iconPath = "Interface\\AddOns\\CoordinationCloakUtility\\media\\ccu"
 
-	self.minimapButton = RGXMinimap:Create({
+	self.minimapButton = RGX:GetMinimap():Create({
 		name = "CCU_MinimapButton",
 		icon = iconPath,
 		iconSize = 19,
 		buttonSize = 32,
-		angle = self.db.minimapAngle,
-		radius = 80,
-		draggable = true,
-		onClick = function(button, mouseButton)
-			if mouseButton == "LeftButton" then
-				self:HandleMinimapClick()
-			end
+		defaultAngle = self.defaultMinimapAngle,
+		storage = self.db,
+		enabledKey = "minimapIconEnabled",
+		onLeftClick = function()
+			self:HandleMinimapClick()
 		end,
-		onRightClick = function(button)
-			-- Ctrl+Right-click handled via tooltip/scripts
-		end,
-		onDragStop = function(btn, angle)
-			self.db.minimapAngle = angle
+		onCtrlRight = function()
+			self:ToggleMinimapIcon(false)
 		end,
 		-- Tooltip strings are localized at button-creation time (Initialize runs
 		-- InitializeLocalization() before CreateMinimapButton()). The widget
@@ -34,8 +29,7 @@ function CCU:CreateMinimapButton()
 			title = "|cff8b0941Coordination Cloak Utility|r",
 			subtitle = "/ccu",
 			lines = {
-				"|cffd9c6ff" .. self:GetLocalizedText("MINIMAP_TOOLTIP_INTRO") .. "|r",
-				" ",
+				{text = "|cffd9c6ff" .. self:GetLocalizedText("MINIMAP_TOOLTIP_INTRO") .. "|r"},
 				{left = "|cff8b0941Left-Click|r", right = "|cffffffffEquip or use your teleport cloak|r"},
 				{left = "|cff4ecdc4Left-Drag|r", right = "|cffffffffMove around minimap|r"},
 				{left = "|cffe74c3cCtrl+Right-Click|r", right = "|cffffffffHide minimap icon|r"},
@@ -43,12 +37,7 @@ function CCU:CreateMinimapButton()
 		},
 	})
 
-	-- Add Ctrl+Right-click to hide
-	self.minimapButton:SetScript("OnMouseUp", function(btn, mouseButton)
-		if mouseButton == "RightButton" and IsControlKeyDown() then
-			self:ToggleMinimapIcon(false)
-		end
-	end)
+	if not self.minimapButton then return end
 
 	-- Apply saved angle
 	if self.db.minimapAngle then
