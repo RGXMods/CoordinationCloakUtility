@@ -63,9 +63,13 @@ CCU.db = RGX:NewDatabase("CCUDB", {
 })
 
 -- Bootstrap RGX Addon (the framework dispatches opts.onInit; onLoad would be
--- silently ignored)
+-- silently ignored). Adopt the private vararg addon table so onInit's self IS
+-- CCU -- without opts.table the framework passes its own bare addon object,
+-- where Initialize is nil (the ADDON_LOADED crash) -- and so the CCU.db
+-- created above is reused as addon.db instead of opts.db being misread as a
+-- defaults table for a second auto-derived database.
 RGX.Addon(CCU.name, {
-	db = CCU.db,
+	table = CCU,
 	onInit = function(self)
 		self:Initialize()
 	end,
