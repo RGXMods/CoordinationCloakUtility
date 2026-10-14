@@ -6,14 +6,8 @@ local GetItemInfo = C_Item.GetItemInfo
 function CCU:RegisterEvents()
 	local RGX = _G.RGXFramework
 
-	RGX:RegisterEvent("ADDON_LOADED", function(addonName)
-		if addonName == self.name then
-			self:CreateSecureButton()
-			self:CreateMinimapButton()
-			self.version = C_AddOns.GetAddOnMetadata(self.name, "Version")
-		end
-	end)
-
+	-- onInit already created the buttons for this addon's ADDON_LOADED.
+	-- Framework callbacks receive the event name before its payload.
 	RGX:RegisterEvent("PLAYER_LOGIN", function()
 		-- DB already initialized via RGX:NewDatabase
 		if not self.db.minimapIconEnabled then
@@ -53,7 +47,7 @@ function CCU:RegisterEvents()
 		end
 	end)
 
-	RGX:RegisterEvent("PLAYER_EQUIPMENT_CHANGED", function(slotID)
+	RGX:RegisterEvent("PLAYER_EQUIPMENT_CHANGED", function(_, slotID)
 		if slotID == GetInventorySlotInfo("BackSlot") then
 			if self.reEquipAttempted and self.originalCloak then
 				local equippedCloakID = GetInventoryItemID("player", slotID)
@@ -94,7 +88,7 @@ function CCU:RegisterEvents()
 		self:UpdateUsableCloaks()
 	end)
 
-	RGX:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED", function(unit, _, spellID)
+	RGX:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED", function(_, unit, castGUID, spellID)
 		if unit == "player" and self.teleportInProgress then
 			self:StartReEquipCheck()
 		end
