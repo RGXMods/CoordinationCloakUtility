@@ -2,6 +2,13 @@
 local CCU = _G.CCU
 local RGX = _G.RGXFramework
 
+-- Retail item APIs moved to C_Item. Keep the documented tuple returns;
+-- RGX.API.GetItemInfo currently assumes a table result instead.
+local GetItemInfo = C_Item.GetItemInfo
+local GetItemCount = RGX.API.GetItemCount
+local GetItemCooldown = C_Item.GetItemCooldown
+local EquipItemByName = C_Item.EquipItemByName
+
 -- Initialize cloaks
 function CCU:InitializeCloaks()
 	self.cloaksInitialized = false
@@ -113,10 +120,10 @@ function CCU:HandleBackSlotItem()
 			if self.suppressNextEquipMessage then
 				self.suppressNextEquipMessage = false
 			else
-				self:Print(self.CCU_PREFIX .. itemLink .. self.L.CLOAK_EQUIPPED)
+				self:Print(itemLink .. self.L.CLOAK_EQUIPPED)
 			end
 			if not InCombatLockdown() then
-				if self.suppressNextPopupButton then
+				if self._minimapProcess or self.suppressNextPopupButton then
 					self.suppressNextPopupButton = false
 					if self.secureButton and self.secureButton:IsShown() then
 						self.secureButton:Hide()
@@ -128,13 +135,16 @@ function CCU:HandleBackSlotItem()
 			end
 		else
 			local remainingTime = self:FormatTime(remaining)
-			self:Print(self.CCU_PREFIX .. string.format(self.L.CLOAK_ON_CD, itemLink, remainingTime))
+			self:Print(string.format(self.L.CLOAK_ON_CD, itemLink, remainingTime))
 			if not InCombatLockdown() then
 				self.secureButton:Hide()
 			end
 		end
+		self:RefreshMinimapButton()
 		return
 	else
+		self._minimapProcess = nil
+		self._minimapCloakID = nil
 		self.originalCloak = nil
 		if not InCombatLockdown() and self.secureButton and self.secureButton:IsShown() then
 			self.secureButton:Hide()
@@ -146,6 +156,8 @@ end
 
 -- Reset cloak process
 function CCU:ResetCloakProcess()
+	self._minimapProcess = nil
+	self._minimapCloakID = nil
 	self.teleportInProgress = false
 	self.originalCloak = nil
 	self.reEquipAttempted = false
@@ -155,7 +167,7 @@ function CCU:ResetCloakProcess()
 	self.reEquipRetryCount = 0
 	self.forceDefaultMinimapIcon = true
 	if self.reEquipTimer then
-		self.reEquipTimer:Cancel()
+		RGX:CancelTimer(self.reEquipTimer)
 		self.reEquipTimer = nil
 	end
 	if not InCombatLockdown() and self.secureButton and self.secureButton:IsShown() then
@@ -169,7 +181,7 @@ end
 -- Start re-equip check
 function CCU:StartReEquipCheck()
 	if self.reEquipTimer then
-		self.reEquipTimer:Cancel()
+		RGX:CancelTimer(self.reEquipTimer)
 	end
 
 	self.lastZone = GetZoneText()
@@ -187,7 +199,7 @@ function CCU:CheckTeleportAndReequip()
 
 	local elapsed = GetTime() - (self.reEquipStartTime or 0)
 	if elapsed > self.reEquipTimeout then
-		if self.reEquipTimer then self.reEquipTimer:Cancel(); self.reEquipTimer = nil end
+		if self.reEquipTimer then RGX:CancelTimer(self.reEquipTimer); self.reEquipTimer = nil end
 		self:Print(self.L.REEQUIP_FAILED)
 		self:ResetCloakProcess()
 		return
@@ -198,11 +210,11 @@ function CCU:CheckTeleportAndReequip()
 	local equippedCloakID = GetInventoryItemID("player", backSlotID)
 
 	if zoneChanged then
-		if self.reEquipTimer then self.reEquipTimer:Cancel(); self.reEquipTimer = nil end
+		if self.reEquipTimer then RGX:CancelTimer(self.reEquipTimer); self.reEquipTimer = nil end
 		self.reEquipRetryCount = 0
 		self:AttemptReequip()
 	elseif equippedCloakID == self.originalCloak then
-		if self.reEquipTimer then self.reEquipTimer:Cancel(); self.reEquipTimer = nil end
+		if self.reEquipTimer then RGX:CancelTimer(self.reEquipTimer); self.reEquipTimer = nil end
 		self:ResetCloakProcess()
 	end
 end
@@ -276,7 +288,7 @@ function CCU:GetBestUsableCloakID(silent)
 			return cloakID, itemLink, firstOwnedCloakID, firstOwnedLink
 		elseif not silent then
 			local remainingTime = self:FormatTime(remaining)
-			self:Print(self.CCU_PREFIX .. string.format(self.L.CLOAK_ON_CD, itemLink, remainingTime))
+			self:Print(string.format(self.L.CLOAK_ON_CD, itemLink, remainingTime))
 		end
 	end
 
@@ -305,11 +317,9 @@ function CCU:EquipAndUseCloak(cloakID, cloakLink, source)
 	local remaining = math.ceil(start + duration - GetTime())
 	if duration > 0 then
 		local remainingTime = self:FormatTime(remaining)
-		self:Print(self.CCU_PREFIX .. string.format(self.L.CLOAK_ON_CD, cloakLink, remainingTime))
+		self:Print(string.format(self.L.CLOAK_ON_CD, cloakLink, remainingTime))
 		return
 	end
-
-	self:Print(self.CCU_PREFIX .. cloakLink .. self.L.PROCESS_STARTED)
 
 	local backSlotID = GetInventorySlotInfo("BackSlot")
 	local equippedCloakID = GetInventoryItemID("player", backSlotID)
@@ -321,47 +331,30 @@ function CCU:EquipAndUseCloak(cloakID, cloakLink, source)
 	local originalCloakLink = self.originalCloak and select(2, GetItemInfo(self.originalCloak))
 	self.db.lastEquippedCloak = self.originalCloak
 	if originalCloakLink then
-		self:Print(self.CCU_PREFIX .. self.L.ORIGINAL_CLOAK_SAVED .. originalCloakLink)
+		self:Print(self.L.ORIGINAL_CLOAK_SAVED .. originalCloakLink)
 	else
-		self:Print(self.CCU_PREFIX .. self.L.ORIGINAL_CLOAK_SAVED .. self.L.NO_CLOAK_EQUIPPED)
+		self:Print(self.L.ORIGINAL_CLOAK_SAVED .. self.L.NO_CLOAK_EQUIPPED)
 	end
 
-	if source == "minimap" then
-		if equippedCloakID == cloakID then
-			self:Print(self.CCU_PREFIX .. self.L.CLOAK_ALREADY_EQUIPPED)
-		else
+	-- Minimap preparation runs after its secure action handler, so the item
+	-- action is available only to a subsequent hardware click on that icon.
+	-- Slash preparation retains the separate secure button.
+	if not InCombatLockdown() and self.secureButton then
+		self._minimapProcess = source == "minimap"
+		self._minimapCloakID = self._minimapProcess and cloakID or nil
+		self.forceDefaultMinimapIcon = false
+		if equippedCloakID ~= cloakID then
 			self.suppressNextEquipMessage = true
-			self.suppressNextPopupButton = true
 			EquipItemByName(cloakID)
-			self:Print(self.CCU_PREFIX .. cloakLink .. self.L.CLOAK_EQUIPPED)
 		end
-		if not InCombatLockdown() and self.secureButton and self.secureButton:IsShown() then
+		if self._minimapProcess then
 			self.secureButton:Hide()
-		end
-		RGX:After(0.1, function() self:RefreshMinimapButton() end)
-		return
-	end
-
-	local usedDirectly = false
-	if not InCombatLockdown() then
-		if equippedCloakID == cloakID then
-			self:Print(self.CCU_PREFIX .. self.L.CLOAK_ALREADY_EQUIPPED)
-			usedDirectly = self:TryExecuteTeleportMacro(cloakID)
-		else
-			usedDirectly = self:TryExecuteTeleportMacro(cloakID)
-			if not usedDirectly then
-				self.suppressNextEquipMessage = true
-				EquipItemByName(cloakID)
-			end
-		end
-
-		if usedDirectly then
-			self.teleportInProgress = true
-			self:Print(self.CCU_PREFIX .. self.L.TELEPORTATION_IN_PROGRESS)
 		else
 			self:ConfigureSecureButtonForBackSlot(cloakID)
 			self.secureButton:Show()
 		end
+		self:RefreshMinimapButton()
+		RGX:After(0.1, function() self:RefreshMinimapButton() end)
 	end
 end
 
