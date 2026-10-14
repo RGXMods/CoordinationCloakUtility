@@ -76,8 +76,6 @@ RGX.Addon(CCU.name, {
 })
 
 function CCU:Initialize()
-	RGX:Print(self.CCU_PREFIX .. "Initializing...")
-
 	-- Create secure button for cloak usage
 	self:CreateSecureButton()
 
@@ -110,7 +108,6 @@ function CCU:Initialize()
 
 	RGX:After(1, function() self:HandleBackSlotItem() end)
 
-	RGX:Print(self.CCU_PREFIX .. "Loaded v" .. self.version)
 end
 
 function CCU:Print(msg)

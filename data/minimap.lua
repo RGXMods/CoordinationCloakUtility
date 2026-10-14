@@ -45,14 +45,13 @@ function CCU:CreateMinimapButton()
 	end
 
 	-- Apply saved visibility
-	if not self.db.minimapIconEnabled then
-		self.minimapButton:Hide()
-	end
+	self.minimapButton:SetVisible(self.db.minimapIconEnabled ~= false)
 end
 
 function CCU:UpdateMinimapButtonPosition()
 	if not self.minimapButton then return end
 	self.minimapButton:SetAngle(self.db.minimapAngle or self.defaultMinimapAngle)
+	self.minimapButton:PlaceAtAngle()
 end
 
 function CCU:ToggleMinimapIcon(show)
