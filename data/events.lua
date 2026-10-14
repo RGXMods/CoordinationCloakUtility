@@ -1,6 +1,7 @@
 -- CCU | Events
 local CCU = _G.CCU
 local RGX = _G.RGXFramework
+local GetItemInfo = C_Item.GetItemInfo
 
 function CCU:RegisterEvents()
 	local RGX = _G.RGXFramework

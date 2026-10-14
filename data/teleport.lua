@@ -2,6 +2,13 @@
 local CCU = _G.CCU
 local RGX = _G.RGXFramework
 
+-- Retail item APIs moved to C_Item. Keep the documented tuple returns;
+-- RGX.API.GetItemInfo currently assumes a table result instead.
+local GetItemInfo = C_Item.GetItemInfo
+local GetItemCount = RGX.API.GetItemCount
+local GetItemCooldown = C_Item.GetItemCooldown
+local EquipItemByName = C_Item.EquipItemByName
+
 -- Initialize cloaks
 function CCU:InitializeCloaks()
 	self.cloaksInitialized = false

@@ -1,6 +1,7 @@
 -- CCU | Secure Button & Minimap Refresh
 local CCU = _G.CCU
 local RGX = _G.RGXFramework
+local GetItemIcon = RGX.API.GetItemIcon
 
 -- Create secure button for cloak usage
 function CCU:CreateSecureButton()
