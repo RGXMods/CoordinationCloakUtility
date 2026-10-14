@@ -167,7 +167,7 @@ function CCU:ResetCloakProcess()
 	self.reEquipRetryCount = 0
 	self.forceDefaultMinimapIcon = true
 	if self.reEquipTimer then
-		self.reEquipTimer:Cancel()
+		RGX:CancelTimer(self.reEquipTimer)
 		self.reEquipTimer = nil
 	end
 	if not InCombatLockdown() and self.secureButton and self.secureButton:IsShown() then
@@ -181,7 +181,7 @@ end
 -- Start re-equip check
 function CCU:StartReEquipCheck()
 	if self.reEquipTimer then
-		self.reEquipTimer:Cancel()
+		RGX:CancelTimer(self.reEquipTimer)
 	end
 
 	self.lastZone = GetZoneText()
@@ -199,7 +199,7 @@ function CCU:CheckTeleportAndReequip()
 
 	local elapsed = GetTime() - (self.reEquipStartTime or 0)
 	if elapsed > self.reEquipTimeout then
-		if self.reEquipTimer then self.reEquipTimer:Cancel(); self.reEquipTimer = nil end
+		if self.reEquipTimer then RGX:CancelTimer(self.reEquipTimer); self.reEquipTimer = nil end
 		self:Print(self.L.REEQUIP_FAILED)
 		self:ResetCloakProcess()
 		return
@@ -210,11 +210,11 @@ function CCU:CheckTeleportAndReequip()
 	local equippedCloakID = GetInventoryItemID("player", backSlotID)
 
 	if zoneChanged then
-		if self.reEquipTimer then self.reEquipTimer:Cancel(); self.reEquipTimer = nil end
+		if self.reEquipTimer then RGX:CancelTimer(self.reEquipTimer); self.reEquipTimer = nil end
 		self.reEquipRetryCount = 0
 		self:AttemptReequip()
 	elseif equippedCloakID == self.originalCloak then
-		if self.reEquipTimer then self.reEquipTimer:Cancel(); self.reEquipTimer = nil end
+		if self.reEquipTimer then RGX:CancelTimer(self.reEquipTimer); self.reEquipTimer = nil end
 		self:ResetCloakProcess()
 	end
 end

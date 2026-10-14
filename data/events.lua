@@ -28,7 +28,7 @@ function CCU:RegisterEvents()
 		if self.teleportInProgress then
 			self.inLoadingScreen = true
 			self.waitingToReequip = true
-			if self.reEquipTimer then self.reEquipTimer:Cancel(); self.reEquipTimer = nil end
+			if self.reEquipTimer then RGX:CancelTimer(self.reEquipTimer); self.reEquipTimer = nil end
 		end
 	end)
 
@@ -39,7 +39,7 @@ function CCU:RegisterEvents()
 		self:RefreshMinimapButton()
 
 		if self.teleportInProgress then
-			if self.reEquipTimer then self.reEquipTimer:Cancel(); self.reEquipTimer = nil end
+			if self.reEquipTimer then RGX:CancelTimer(self.reEquipTimer); self.reEquipTimer = nil end
 			self.waitingToReequip = false
 			self.reEquipRetryCount = 0
 			self.reEquipStartTime = GetTime()
@@ -53,7 +53,7 @@ function CCU:RegisterEvents()
 				local equippedCloakID = GetInventoryItemID("player", slotID)
 				if equippedCloakID == self.originalCloak then
 					if self.reEquipTimer then
-						self.reEquipTimer:Cancel()
+						RGX:CancelTimer(self.reEquipTimer)
 						self.reEquipTimer = nil
 					end
 					self:Print(self.L.REEQUIP_SUCCESS .. (select(2, GetItemInfo(self.originalCloak)) or "Unknown Cloak"))
